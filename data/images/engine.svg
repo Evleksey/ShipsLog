@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="bay" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dfe7ec"/>
+      <stop offset="1" stop-color="#c2cfd8"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bay)"/>
+  <rect y="478" width="800" height="122" fill="#9aa9b3"/>
+  <ellipse cx="410" cy="486" rx="300" ry="16" fill="#000" opacity=".12"/>
+
+  <!-- Engine bearers and mounts -->
+  <rect x="150" y="452" width="520" height="28" rx="4" fill="#a9825a"/>
+  <rect x="230" y="432" width="52" height="22" rx="3" fill="#27323b"/>
+  <rect x="520" y="432" width="52" height="22" rx="3" fill="#27323b"/>
+
+  <!-- Coolant tank and hose, air filter -->
+  <path d="M252 182q-52 8-62 52" fill="none" stroke="#1f2a35" stroke-width="10" stroke-linecap="round"/>
+  <rect x="250" y="150" width="72" height="48" rx="8" fill="#e9ecee" stroke="#b9c3ca" stroke-width="2"/>
+  <rect x="273" y="137" width="26" height="15" rx="3" fill="#1f2a35"/>
+  <rect x="520" y="182" width="28" height="18" fill="#55626e"/>
+  <rect x="470" y="128" width="122" height="58" rx="29" fill="#1f2a35"/>
+  <rect x="502" y="128" width="9" height="58" fill="#55626e"/>
+
+  <!-- Gearbox, coupling and shaft -->
+  <rect x="704" y="346" width="96" height="14" fill="#b9c3ca"/>
+  <rect x="672" y="330" width="32" height="46" rx="4" fill="#8d99a3"/>
+  <path d="M590 290h70a14 14 0 0 1 14 14v96a14 14 0 0 1-14 14h-70z" fill="#55707f"/>
+
+  <!-- Block and cylinder head -->
+  <rect x="220" y="250" width="370" height="186" rx="14" fill="#3d7d5a"/>
+  <path d="M220 388h370v34a14 14 0 0 1-14 14H234a14 14 0 0 1-14-14z" fill="#33694b"/>
+  <rect x="245" y="196" width="320" height="64" rx="12" fill="#4b9069"/>
+  <g fill="#2b5a41">
+    <circle cx="268" cy="212" r="5"/>
+    <circle cx="542" cy="212" r="5"/>
+    <circle cx="268" cy="244" r="5"/>
+    <circle cx="542" cy="244" r="5"/>
+  </g>
+  <circle cx="340" cy="208" r="17" fill="#f0c330" stroke="#b78e12" stroke-width="3"/>
+  <g fill="#8d99a3">
+    <rect x="398" y="178" width="14" height="20" rx="2"/>
+    <rect x="442" y="178" width="14" height="20" rx="2"/>
+    <rect x="486" y="178" width="14" height="20" rx="2"/>
+  </g>
+
+  <!-- Oil filter and dipstick on the block -->
+  <rect x="300" y="300" width="56" height="86" rx="10" fill="#1d6fb0"/>
+  <rect x="300" y="322" width="56" height="18" fill="#f7f4ec"/>
+  <path d="M440 330l16-78" stroke="#b9c3ca" stroke-width="3.5"/>
+  <circle cx="458" cy="244" r="8" fill="none" stroke="#f0c330" stroke-width="4"/>
+
+  <!-- Belt, pulleys, alternator -->
+  <path d="M146 366l6-108a28 28 0 0 1 55-6l40 110" fill="none" stroke="#111a22" stroke-width="7" stroke-linejoin="round"/>
+  <circle cx="180" cy="262" r="31" fill="#b9c3ca" stroke="#7f8c97" stroke-width="3"/>
+  <circle cx="180" cy="262" r="14" fill="#27323b"/>
+  <circle cx="196" cy="372" r="52" fill="#27323b"/>
+  <circle cx="196" cy="372" r="40" fill="none" stroke="#3b4853" stroke-width="3"/>
+  <circle cx="196" cy="372" r="18" fill="#8d99a3"/>
+</svg>

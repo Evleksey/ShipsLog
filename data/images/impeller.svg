@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="bench" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eaf0f3"/>
+      <stop offset="1" stop-color="#d3dde3"/>
+    </linearGradient>
+    <g id="vane">
+      <path d="M-14-60c-4-40 14-66 42-92l20 18c-22 22-34 44-33 74z" fill="#1c2227"/>
+      <circle cx="39" cy="-143" r="14" fill="#1c2227"/>
+    </g>
+  </defs>
+  <rect width="800" height="600" fill="url(#bench)"/>
+
+  <!-- Pump cover plate, set aside -->
+  <ellipse cx="664" cy="486" rx="92" ry="12" fill="#000" opacity=".12"/>
+  <circle cx="660" cy="462" r="82" fill="#c9a24b" stroke="#a8842f" stroke-width="4"/>
+  <g fill="#8a6a22">
+    <circle cx="660" cy="398" r="8"/>
+    <circle cx="715" cy="430" r="8"/>
+    <circle cx="715" cy="494" r="8"/>
+    <circle cx="660" cy="526" r="8"/>
+    <circle cx="605" cy="494" r="8"/>
+    <circle cx="605" cy="430" r="8"/>
+  </g>
+
+  <!-- Pump body with the impeller in it -->
+  <g transform="translate(350 290)">
+    <circle r="204" fill="#000" opacity=".08"/>
+    <circle r="196" fill="#b08a3a"/>
+    <circle r="174" fill="#f4ecd8"/>
+    <g fill="#8a6a22">
+      <circle cy="-185" r="8"/>
+      <circle cx="160" cy="-92" r="8"/>
+      <circle cx="160" cy="92" r="8"/>
+      <circle cy="185" r="8"/>
+      <circle cx="-160" cy="92" r="8"/>
+      <circle cx="-160" cy="-92" r="8"/>
+    </g>
+    <use href="#vane"/>
+    <use href="#vane" transform="rotate(60)"/>
+    <use href="#vane" transform="rotate(120)"/>
+    <use href="#vane" transform="rotate(180)"/>
+    <use href="#vane" transform="rotate(240)"/>
+    <use href="#vane" transform="rotate(300)"/>
+    <circle r="68" fill="#1c2227"/>
+    <circle r="42" fill="#c79a3b"/>
+    <circle r="20" fill="#8a6a22"/>
+    <rect x="-5" y="-30" width="10" height="16" fill="#8a6a22"/>
+    <!-- The crack that ended this impeller's service -->
+    <path d="M-17-70l12-6l10 7l13-8" transform="rotate(120)" fill="none" stroke="#f4ecd8" stroke-width="4" stroke-linejoin="round"/>
+  </g>
+</svg>

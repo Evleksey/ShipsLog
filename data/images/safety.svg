@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="seat" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef1f1"/>
+      <stop offset="1" stop-color="#d7dee0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#seat)"/>
+  <path d="M0 150h800M0 300h800M0 450h800" stroke="#c9d2d6" stroke-width="2"/>
+
+  <!-- Inflated lifejacket with reflective tape, belt and oral tube -->
+  <ellipse cx="300" cy="474" rx="170" ry="14" fill="#000" opacity=".1"/>
+  <path d="M160 130q0-44 50-44q50 0 50 50v170q0 44 40 44q40 0 40-44V136q0-50 50-50q50 0 50 44v220q0 110-140 110q-140 0-140-110z" fill="#f6a11f"/>
+  <path d="M184 134q0-26 26-26" fill="none" stroke="#fbc566" stroke-width="8" stroke-linecap="round"/>
+  <rect x="172" y="162" width="76" height="17" rx="3" fill="#e3e8ec"/>
+  <rect x="352" y="162" width="76" height="17" rx="3" fill="#e3e8ec"/>
+  <rect x="312" y="214" width="13" height="64" rx="6" fill="#c8452f"/>
+  <rect x="120" y="390" width="360" height="24" rx="4" fill="#1d3b57"/>
+  <rect x="280" y="382" width="42" height="40" rx="5" fill="#1c2227"/>
+  <rect x="290" y="394" width="22" height="16" rx="2" fill="#55626e"/>
+
+  <!-- Fire extinguisher with gauge and hose -->
+  <ellipse cx="616" cy="486" rx="76" ry="10" fill="#000" opacity=".12"/>
+  <rect x="560" y="176" width="112" height="304" rx="30" fill="#d2392b"/>
+  <rect x="572" y="188" width="14" height="270" rx="7" fill="#e86a5c"/>
+  <rect x="558" y="468" width="116" height="14" rx="4" fill="#9c2a20"/>
+  <rect x="592" y="282" width="68" height="108" rx="4" fill="#f7f4ec"/>
+  <rect x="602" y="296" width="48" height="10" rx="2" fill="#d2392b"/>
+  <rect x="602" y="318" width="48" height="6" rx="2" fill="#9aa9b3"/>
+  <rect x="602" y="332" width="36" height="6" rx="2" fill="#9aa9b3"/>
+  <rect x="597" y="136" width="40" height="46" rx="4" fill="#2b3640"/>
+  <path d="M600 148l-42-24l-6 13l44 28z" fill="#2b3640"/>
+  <path d="M604 176q-64 22-58 150" fill="none" stroke="#1c2227" stroke-width="13" stroke-linecap="round"/>
+  <rect x="534" y="320" width="24" height="44" rx="7" fill="#1c2227"/>
+  <circle cx="650" cy="158" r="16" fill="#f7f4ec" stroke="#2b3640" stroke-width="4"/>
+  <path d="M650 158l7-9" stroke="#2f9b5a" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Flares -->
+  <rect x="100" y="506" width="210" height="30" rx="9" fill="#d2392b"/>
+  <rect x="100" y="506" width="44" height="30" rx="9" fill="#f0c330"/>
+  <rect x="176" y="513" width="92" height="16" rx="3" fill="#f7f4ec"/>
+  <rect x="136" y="546" width="210" height="30" rx="9" fill="#f6a11f"/>
+  <rect x="136" y="546" width="44" height="30" rx="9" fill="#1c2227"/>
+  <rect x="212" y="553" width="92" height="16" rx="3" fill="#f7f4ec"/>
+</svg>

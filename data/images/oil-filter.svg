@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3ead8"/>
+      <stop offset="1" stop-color="#e6d8bc"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#wall)"/>
+  <rect y="432" width="800" height="168" fill="#c8a878"/>
+  <path d="M0 488h800M0 546h800" stroke="#b39468" stroke-width="2"/>
+
+  <!-- Old filter on its side, with the oil it left behind -->
+  <ellipse cx="290" cy="474" rx="150" ry="17" fill="#27190f" opacity=".75"/>
+  <rect x="120" y="330" width="240" height="132" rx="18" fill="#5b6670"/>
+  <rect x="166" y="350" width="112" height="92" fill="#c9c2b3" opacity=".65"/>
+  <path d="M120 420q60 16 120 6q70-10 120 8v10a18 18 0 0 1-18 18H138a18 18 0 0 1-18-18z" fill="#27190f" opacity=".55"/>
+  <ellipse cx="360" cy="396" rx="20" ry="66" fill="#8d99a3"/>
+  <ellipse cx="362" cy="396" rx="8" ry="25" fill="#27323b"/>
+  <g fill="#27323b">
+    <circle cx="358" cy="350" r="4"/>
+    <circle cx="352" cy="372" r="4"/>
+    <circle cx="352" cy="420" r="4"/>
+    <circle cx="358" cy="442" r="4"/>
+  </g>
+  <path d="M380 436q10 18 0 28q-10-10 0-28z" fill="#27190f"/>
+
+  <!-- New filter, upright -->
+  <ellipse cx="520" cy="440" rx="96" ry="12" fill="#000" opacity=".14"/>
+  <rect x="440" y="190" width="160" height="244" rx="16" fill="#1d6fb0"/>
+  <ellipse cx="520" cy="194" rx="80" ry="17" fill="#2a82c6"/>
+  <path d="M458 214v34M476 216v34M494 217v34M512 218v34M530 218v34M548 217v34M566 216v34M584 214v34" stroke="#165a90" stroke-width="5" stroke-linecap="round"/>
+  <rect x="440" y="276" width="160" height="88" fill="#f7f4ec"/>
+  <rect x="458" y="294" width="92" height="12" rx="2" fill="#1d6fb0"/>
+  <rect x="458" y="318" width="124" height="7" rx="2" fill="#9aa9b3"/>
+  <rect x="458" y="334" width="76" height="7" rx="2" fill="#9aa9b3"/>
+  <rect x="434" y="420" width="172" height="18" rx="5" fill="#b9c3ca"/>
+
+  <!-- Rag -->
+  <path d="M600 520q40-44 112-22q44 20 24 52q-70 22-124 6q-22-12-12-36z" fill="#c8452f"/>
+  <path d="M622 524q40-18 86-6M632 544q44-10 84 0" fill="none" stroke="#f4c9c0" stroke-width="4" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,433 @@
+{
+  "formatVersion": 1,
+  "demo": {
+    "anchorDate": "2026-10-04"
+  },
+  "boats": [
+    {
+      "id": "aurora",
+      "name": "Aurora",
+      "type": "Sailing yacht",
+      "description": "Masthead sloop kept in the Stockholm archipelago. Sailed from May to October and laid up ashore for the winter.",
+      "picture": "images/aurora.svg",
+      "details": [
+        { "label": "Home port", "value": "Saltsjöbaden" },
+        { "label": "Built", "value": "1998" },
+        { "label": "Length overall", "value": "10.4 m" },
+        { "label": "Beam", "value": "3.4 m" },
+        { "label": "Draught", "value": "1.8 m" },
+        { "label": "Engine", "value": "29 hp inboard diesel" }
+      ],
+      "inspection": {
+        "Sails": { "days": 30 },
+        "Hull": { "days": 90 },
+        "Electrical": { "days": 90 },
+        "Deck": { "days": 30, "monitored": false }
+      }
+    },
+    {
+      "id": "petrel",
+      "name": "Petrel",
+      "type": "Motor cruiser",
+      "description": "Twin-engine flybridge cruiser based on the Solent, used for weekend passages along the south coast.",
+      "picture": "images/petrel.svg",
+      "details": [
+        { "label": "Home port", "value": "Lymington" },
+        { "label": "Built", "value": "2011" },
+        { "label": "Length overall", "value": "11.9 m" },
+        { "label": "Beam", "value": "3.9 m" },
+        { "label": "Draught", "value": "1.0 m" },
+        { "label": "Engines", "value": "2 × 300 hp diesel" },
+        { "label": "Fuel", "value": "900 L" }
+      ],
+      "inspection": {
+        "Hull": { "days": 60 },
+        "Electrical": { "days": 30 },
+        "Deck": { "days": 90 }
+      }
+    },
+    {
+      "id": "tern",
+      "name": "Tern",
+      "type": "RIB tender",
+      "description": "Rigid inflatable used as Aurora's tender and for runs across the harbour.",
+      "picture": "images/tern.svg",
+      "details": [
+        { "label": "Home port", "value": "Saltsjöbaden" },
+        { "label": "Built", "value": "2019" },
+        { "label": "Length overall", "value": "4.2 m" },
+        { "label": "Engine", "value": "30 hp outboard" }
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "id": "aurora-01",
+      "boatId": "aurora",
+      "timestamp": "2026-05-16T12:15:00+02:00",
+      "title": "Sails bent on and inspected",
+      "types": ["Inspection"],
+      "parts": ["Sails"],
+      "location": { "name": "Saltsjöbaden, home berth", "lat": 59.27793, "lon": 18.31632 },
+      "notes": "Main and genoa bent on for the season. Checked every seam, the batten pockets and both leech lines before hoisting — nothing to report after the winter in the loft.",
+      "pictures": [
+        { "src": "images/sails.svg", "caption": "Mainsail hoisted at the berth" }
+      ]
+    },
+    {
+      "id": "aurora-02",
+      "boatId": "aurora",
+      "timestamp": "2026-05-23T10:30:00+02:00",
+      "title": "Antifouling applied",
+      "types": ["Service"],
+      "parts": ["Hull"],
+      "location": { "name": "Saltsjöbaden, boatyard", "lat": 59.27793, "lon": 18.31632 },
+      "notes": "Two coats below the waterline, a third along the waterline and on the leading edges of keel and rudder. Launched the following morning.",
+      "pictures": [
+        { "src": "images/hull.svg", "caption": "On the cradle before the launch" }
+      ]
+    },
+    {
+      "id": "aurora-03",
+      "boatId": "aurora",
+      "timestamp": "2026-06-14T13:00:00+02:00",
+      "title": "Rig tuned",
+      "types": ["Service"],
+      "parts": ["Rigging"],
+      "location": { "name": "Saltsjöbaden, home berth", "lat": 59.27793, "lon": 18.31632 },
+      "notes": "Cap shrouds taken up one and a half turns each, lowers one turn. Mast straight under load on both tacks; turnbuckles locked with fresh split pins and taped.",
+      "pictures": [
+        { "src": "images/rigging.svg", "caption": "Starboard shroud turnbuckles after tuning" }
+      ]
+    },
+    {
+      "id": "aurora-04",
+      "boatId": "aurora",
+      "timestamp": "2026-06-28T11:45:00+02:00",
+      "title": "Raw-water impeller replaced",
+      "types": ["Replacement"],
+      "parts": ["Engine"],
+      "engineHours": 1167.0,
+      "location": { "name": "Vaxholm guest harbour", "lat": 59.40059, "lon": 18.35032 },
+      "notes": "Weak cooling-water flow at the exhaust. One vane was cracked at the root; new impeller fitted with a smear of glycerine and a new cover gasket. Spare ordered.",
+      "pictures": [
+        { "src": "images/impeller.svg", "caption": "The old impeller — one vane cracked at the root" }
+      ]
+    },
+    {
+      "id": "aurora-05",
+      "boatId": "aurora",
+      "timestamp": "2026-07-12T15:30:00+02:00",
+      "title": "Battery bank tested",
+      "types": ["Inspection"],
+      "parts": ["Electrical"],
+      "location": { "name": "Saltsjöbaden, home berth", "lat": 59.27793, "lon": 18.31632 },
+      "notes": "Resting voltage 12.7 V on the house bank and 12.8 V on the start battery after a night off the charger. Terminals cleaned and greased, straps tight.",
+      "pictures": [
+        { "src": "images/battery.svg", "caption": "House bank at rest" }
+      ]
+    },
+    {
+      "id": "aurora-06",
+      "boatId": "aurora",
+      "timestamp": "2026-07-20T09:10:00+02:00",
+      "title": "Engine inspected",
+      "types": ["Inspection"],
+      "parts": ["Engine"],
+      "engineHours": 1198.2,
+      "location": { "name": "Sandhamn", "lat": 59.2888, "lon": 18.9175 },
+      "notes": "Mid-cruise look-over: belt, hoses, engine mounts and stern gland. A few drops at the gland while running, as it should be. Oil level unchanged since the last check."
+    },
+    {
+      "id": "aurora-07",
+      "boatId": "aurora",
+      "timestamp": "2026-08-02T10:00:00+02:00",
+      "title": "Primary winches serviced",
+      "types": ["Service"],
+      "parts": ["Deck"],
+      "location": { "name": "Nynäshamn guest harbour", "lat": 58.8907, "lon": 17.94374 },
+      "notes": "Both primaries stripped, washed out and re-greased; pawls lightly oiled. One tired pawl spring replaced on the starboard winch.",
+      "pictures": [
+        { "src": "images/winch.svg", "caption": "Starboard primary, back together" }
+      ]
+    },
+    {
+      "id": "aurora-08",
+      "boatId": "aurora",
+      "timestamp": "2026-08-14T18:20:00+02:00",
+      "title": "Mainsail batten pocket repaired",
+      "types": ["Repair"],
+      "parts": ["Sails"],
+      "location": { "name": "Nynäshamn guest harbour", "lat": 58.8907, "lon": 17.94374 },
+      "notes": "The top batten had worked through the end of its pocket. Hand-stitched a webbing patch over it — good for the rest of the season, but the sailmaker should redo it over the winter.",
+      "pictures": [
+        { "src": "images/sails.svg", "caption": "Top batten pocket after the repair" }
+      ]
+    },
+    {
+      "id": "aurora-09",
+      "boatId": "aurora",
+      "timestamp": "2026-08-25T13:30:00+02:00",
+      "title": "Hull and keel inspected at haul-out",
+      "types": ["Inspection"],
+      "parts": ["Hull"],
+      "engineHours": 1214.8,
+      "location": { "name": "Saltsjöbaden, boatyard", "lat": 59.27793, "lon": 18.31632 },
+      "notes": "Lifted for a mid-season scrub. No blisters, keel joint tight and dry, no play in the rudder bearings. Light weed along the waterline only.",
+      "pictures": [
+        { "src": "images/hull.svg", "caption": "On the cradle after the pressure wash" },
+        { "src": "images/propeller.svg", "caption": "Propeller and shaft, both clean" }
+      ]
+    },
+    {
+      "id": "aurora-10",
+      "boatId": "aurora",
+      "timestamp": "2026-08-25T15:10:00+02:00",
+      "title": "Shaft anode replaced",
+      "types": ["Replacement"],
+      "parts": ["Hull"],
+      "location": { "name": "Saltsjöbaden, boatyard", "lat": 59.27793, "lon": 18.31632 },
+      "notes": "The old anode was a good half wasted. New zinc collar fitted with fresh bolts while the boat was out of the water.",
+      "pictures": [
+        { "src": "images/propeller.svg", "caption": "New anode on the shaft" }
+      ]
+    },
+    {
+      "id": "aurora-11",
+      "boatId": "aurora",
+      "timestamp": "2026-08-29T08:50:00+02:00",
+      "title": "Bilge pump float switch replaced",
+      "types": ["Replacement"],
+      "parts": ["Electrical"],
+      "location": { "name": "Vaxholm guest harbour", "lat": 59.40059, "lon": 18.35032 },
+      "notes": "The switch was sticking in the on position. New one wired in with heat-shrink connectors and tested with a bucket of water."
+    },
+    {
+      "id": "aurora-12",
+      "boatId": "aurora",
+      "timestamp": "2026-09-05T16:45:00+02:00",
+      "title": "Genoa sheets replaced",
+      "types": ["Replacement"],
+      "parts": ["Rigging"],
+      "location": { "name": "Sandhamn", "lat": 59.2888, "lon": 18.9175 },
+      "notes": "Both sheets swapped for 12 mm double braid, 14 m each. The old ones stay on board as spare mooring lines.",
+      "pictures": [
+        { "src": "images/winch.svg", "caption": "New sheet on the port primary" }
+      ]
+    },
+    {
+      "id": "aurora-13",
+      "boatId": "aurora",
+      "timestamp": "2026-09-11T11:20:00+02:00",
+      "title": "Rigging and sails inspected",
+      "types": ["Inspection"],
+      "parts": ["Rigging", "Sails"],
+      "engineHours": 1229.4,
+      "location": { "name": "Sandhamn", "lat": 59.2888, "lon": 18.9175 },
+      "notes": "Went aloft as far as the spreaders: shrouds, terminals and split pins all sound. Slight chafe on the genoa leech where it touches the spreader tip — spreader end taped. Mainsail stitching fine.",
+      "pictures": [
+        { "src": "images/rigging.svg", "caption": "Port shroud turnbuckles" },
+        { "src": "images/sails.svg", "caption": "Mainsail seams, seen from the boom" }
+      ]
+    },
+    {
+      "id": "aurora-14",
+      "boatId": "aurora",
+      "timestamp": "2026-09-18T14:05:00+02:00",
+      "title": "Safety equipment inspected",
+      "types": ["Inspection"],
+      "parts": ["Safety"],
+      "location": { "name": "Wasahamnen, Stockholm", "lat": 59.32642, "lon": 18.09311 },
+      "notes": "Lifejackets inflated overnight and all held pressure; two gas cylinders are due for replacement next season. Flares in date until 2028, both extinguisher gauges in the green.",
+      "pictures": [
+        { "src": "images/safety.svg", "caption": "Lifejacket, extinguisher and flares laid out for the check" }
+      ]
+    },
+    {
+      "id": "aurora-15",
+      "boatId": "aurora",
+      "timestamp": "2026-09-28T09:30:00+02:00",
+      "title": "Engine serviced",
+      "types": ["Service"],
+      "parts": ["Engine"],
+      "engineHours": 1241.0,
+      "location": { "name": "Saltsjöbaden, home berth", "lat": 59.27793, "lon": 18.31632 },
+      "notes": "250-hour service. Engine oil changed (3.5 L of 15W-40), fuel pre-filter replaced and the system bled, gearbox oil level checked, air filter cleaned.\n\nRan the engine for 15 minutes afterwards: oil pressure and temperature normal, no leaks.",
+      "pictures": [
+        { "src": "images/engine.svg", "caption": "Engine after the service" },
+        { "src": "images/fuel-filter.svg", "caption": "New element in the fuel pre-filter" },
+        { "src": "images/impeller.svg", "caption": "Impeller checked — due for replacement next season" }
+      ]
+    },
+    {
+      "id": "aurora-16",
+      "boatId": "aurora",
+      "timestamp": "2026-09-28T10:15:00+02:00",
+      "title": "Oil filter replaced",
+      "types": ["Replacement"],
+      "parts": ["Engine"],
+      "engineHours": 1241.0,
+      "location": { "name": "Saltsjöbaden, home berth", "lat": 59.27793, "lon": 18.31632 },
+      "notes": "New spin-on filter fitted with a film of oil on the gasket, hand-tight plus three quarters of a turn. Old filter drained and taken to the harbour's recycling point.",
+      "pictures": [
+        { "src": "images/oil-filter.svg", "caption": "Old filter out, new one ready" }
+      ]
+    },
+    {
+      "id": "aurora-17",
+      "boatId": "aurora",
+      "timestamp": "2026-10-01T17:40:00+02:00",
+      "title": "Engine checked before the weekend passage",
+      "types": ["Inspection"],
+      "parts": ["Engine"],
+      "engineHours": 1243.5,
+      "location": { "name": "Saltsjöbaden, home berth", "lat": 59.27793, "lon": 18.31632 },
+      "notes": "Oil level between the marks, coolant topped up by 0.2 L. Belt tension good, no leaks around the raw-water pump. Strainer cleared of eelgrass.",
+      "pictures": [
+        { "src": "images/engine.svg", "caption": "Engine bay after the check" }
+      ]
+    },
+
+    {
+      "id": "petrel-01",
+      "boatId": "petrel",
+      "timestamp": "2026-08-02T17:30:00+01:00",
+      "title": "Trim tab actuator repaired",
+      "types": ["Repair"],
+      "parts": ["Hull"],
+      "engineHours": 571.3,
+      "location": { "name": "Lymington Yacht Haven", "lat": 50.75128, "lon": -1.52705 },
+      "notes": "Starboard tab was slow to respond. Corroded connector at the actuator cleaned and resealed; both tabs now travel evenly."
+    },
+    {
+      "id": "petrel-02",
+      "boatId": "petrel",
+      "timestamp": "2026-08-16T15:45:00+01:00",
+      "title": "Windlass serviced and inspected",
+      "types": ["Service", "Inspection"],
+      "parts": ["Deck"],
+      "location": { "name": "Yarmouth Harbour, Isle of Wight", "lat": 50.70559, "lon": -1.50349 },
+      "notes": "Gypsy removed, cleaned and greased; clutch cone free. Foot switches and the chain counter tested, bitter end secured in the locker."
+    },
+    {
+      "id": "petrel-03",
+      "boatId": "petrel",
+      "timestamp": "2026-08-30T12:00:00+01:00",
+      "title": "Bow thruster anode replaced",
+      "types": ["Replacement"],
+      "parts": ["Hull"],
+      "location": { "name": "Hamble Point Marina", "lat": 50.85159, "lon": -1.31197 },
+      "notes": "Changed during a lift-and-hold over lunch. Thruster blades cleaned of barnacles while the boat was in the slings."
+    },
+    {
+      "id": "petrel-04",
+      "boatId": "petrel",
+      "timestamp": "2026-09-12T14:10:00+01:00",
+      "title": "Batteries and navigation lights inspected",
+      "types": ["Inspection"],
+      "parts": ["Electrical"],
+      "location": { "name": "Cowes Yacht Haven", "lat": 50.76147, "lon": -1.2966 },
+      "notes": "All three batteries hold 12.7 V or better at rest. The stern light lens was cracked — replaced from the spares box. Shore-power lead and RCD tested.",
+      "pictures": [
+        { "src": "images/battery.svg", "caption": "Domestic bank at rest" }
+      ]
+    },
+    {
+      "id": "petrel-05",
+      "boatId": "petrel",
+      "timestamp": "2026-09-22T09:15:00+01:00",
+      "title": "Port engine serviced",
+      "types": ["Service"],
+      "parts": ["Engine"],
+      "engineHours": 604.1,
+      "location": { "name": "Lymington Yacht Haven", "lat": 50.75128, "lon": -1.52705 },
+      "notes": "Annual service on the port engine: oil and filter, coolant strength checked, belt replaced. The starboard engine follows next month.",
+      "pictures": [
+        { "src": "images/engine.svg", "caption": "Port engine with the covers off" },
+        { "src": "images/oil-filter.svg", "caption": "Old oil filter out" }
+      ]
+    },
+    {
+      "id": "petrel-06",
+      "boatId": "petrel",
+      "timestamp": "2026-09-22T10:40:00+01:00",
+      "title": "Fuel filters replaced",
+      "types": ["Replacement"],
+      "parts": ["Engine"],
+      "engineHours": 604.1,
+      "location": { "name": "Lymington Yacht Haven", "lat": 50.75128, "lon": -1.52705 },
+      "notes": "Primary separator elements changed on both engines and the bowls drained — a little water in the port bowl, none to starboard.",
+      "pictures": [
+        { "src": "images/fuel-filter.svg", "caption": "Port separator with the new element" }
+      ]
+    },
+    {
+      "id": "petrel-07",
+      "boatId": "petrel",
+      "timestamp": "2026-09-25T11:30:00+01:00",
+      "title": "Safety equipment inspected",
+      "types": ["Inspection"],
+      "parts": ["Safety"],
+      "location": { "name": "Lymington Yacht Haven", "lat": 50.75128, "lon": -1.52705 },
+      "notes": "Liferaft service is in date until next spring. Lifejacket lights tested, flares checked, fire blanket and extinguishers in place.",
+      "pictures": [
+        { "src": "images/safety.svg", "caption": "Lifejacket, extinguisher and flares" }
+      ]
+    },
+    {
+      "id": "petrel-08",
+      "boatId": "petrel",
+      "timestamp": "2026-09-27T16:00:00+01:00",
+      "title": "Hull inspected after a scrub",
+      "types": ["Inspection"],
+      "parts": ["Hull"],
+      "location": { "name": "Hamble Point Marina", "lat": 50.85159, "lon": -1.31197 },
+      "notes": "Lift, pressure wash and relaunch. Antifouling still sound, no damage to the stern gear, trim tabs and anodes fine.",
+      "pictures": [
+        { "src": "images/propeller.svg", "caption": "Starboard propeller after the wash" }
+      ]
+    },
+    {
+      "id": "petrel-09",
+      "boatId": "petrel",
+      "timestamp": "2026-09-30T08:20:00+01:00",
+      "title": "Engines inspected",
+      "types": ["Inspection"],
+      "parts": ["Engine"],
+      "engineHours": 612.4,
+      "location": { "name": "Lymington Yacht Haven", "lat": 50.75128, "lon": -1.52705 },
+      "notes": "Checks before the run to Yarmouth: oil, coolant, belts and bilges on both engines. Weed cleared from the port raw-water strainer."
+    },
+
+    {
+      "id": "tern-01",
+      "boatId": "tern",
+      "timestamp": "2026-07-10T09:00:00+02:00",
+      "title": "Kill cord replaced",
+      "types": ["Replacement"],
+      "parts": ["Safety"],
+      "location": { "name": "Saltsjöbaden" },
+      "notes": "The old cord's clip had cracked. New coiled cord fitted, with a spare kept in the console locker."
+    },
+    {
+      "id": "tern-02",
+      "boatId": "tern",
+      "timestamp": "2026-08-05T19:00:00+02:00",
+      "title": "Tubes and hull inspected",
+      "types": ["Inspection"],
+      "parts": ["Hull"],
+      "location": { "name": "Saltsjöbaden", "lat": 59.27793, "lon": 18.31632 },
+      "notes": "Tubes still at pressure after 48 hours. Small scuff on the port bow patched with the repair kit; transom and drain plug fine."
+    },
+    {
+      "id": "tern-03",
+      "boatId": "tern",
+      "timestamp": "2026-09-20T10:30:00+02:00",
+      "title": "Outboard serviced",
+      "types": ["Service"],
+      "parts": ["Engine"],
+      "engineHours": 86.0,
+      "notes": "Gear oil and spark plugs changed, grease points done, cooling passages flushed with fresh water."
+    }
+  ]
+}

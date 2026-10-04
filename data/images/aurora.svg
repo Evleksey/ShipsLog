@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b9dbee"/>
+      <stop offset="1" stop-color="#fbeed6"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6eacc1"/>
+      <stop offset="1" stop-color="#28678a"/>
+    </linearGradient>
+    <linearGradient id="main" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ece7d9"/>
+      <stop offset="1" stop-color="#fffdf8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="522" fill="url(#sky)"/>
+  <circle cx="965" cy="330" r="118" fill="#fff6dc" opacity=".55"/>
+  <circle cx="965" cy="330" r="52" fill="#fffaf0"/>
+  <path d="M250 212q14-14 28 0q14-14 28 0M330 262q10-10 20 0q10-10 20 0" fill="none" stroke="#5b6b78" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Skerries on the horizon, one with a lighthouse -->
+  <path d="M0 522V480q70-26 150-12q80-28 170 4q60 14 110 50z" fill="#9dbcb4"/>
+  <path d="M40 522q50-30 120-22q60-16 120 22z" fill="#7fa69b"/>
+  <path d="M760 522q80-42 170-30q80-24 170-8q60-8 100 4v34z" fill="#8fb2aa"/>
+  <rect x="1077" y="436" width="14" height="48" fill="#f7f4ec"/>
+  <rect x="1077" y="452" width="14" height="11" fill="#c8452f"/>
+  <rect x="1074" y="427" width="20" height="10" rx="2" fill="#33414e"/>
+
+  <rect y="520" width="1200" height="280" fill="url(#sea)"/>
+  <g fill="none" stroke="#fff" stroke-linecap="round" opacity=".3">
+    <path d="M80 566q30-8 60 0M960 580q36-9 72 0M1060 640q40-10 80 0M140 668q44-10 88 0M620 700q50-11 100 0M300 742q52-11 104 0M900 730q44-10 88 0" stroke-width="3"/>
+  </g>
+
+  <!-- Reflection -->
+  <path d="M372 612h454q-40 34-226 36q-190-2-228-36z" fill="#173f58" opacity=".35"/>
+  <g fill="none" stroke="#fff" stroke-linecap="round" stroke-width="4" opacity=".16">
+    <path d="M500 664q50-9 100 0M520 690q40-8 80 0M540 716q30-7 60 0"/>
+  </g>
+
+  <!-- Rig: backstay, forestay, mast, spreaders, boom -->
+  <path d="M628 120L344 562M632 150L866 548" stroke="#6b7a87" stroke-width="1.5"/>
+  <rect x="625" y="118" width="6" height="424" fill="#7f8c97"/>
+  <path d="M604 300h48M612 212h32" stroke="#7f8c97" stroke-width="3"/>
+  <path d="M628 506L438 513" stroke="#7f8c97" stroke-width="6" stroke-linecap="round"/>
+  <path d="M625 120l-31 7l31 7z" fill="#c8452f"/>
+
+  <!-- Mainsail with battens, and jib -->
+  <path d="M624 500L626 132Q500 300 444 506z" fill="url(#main)" stroke="#d9d3c3" stroke-width="1.5"/>
+  <path d="M567 218l45 22M517 310l63 31M476 405l72 35" stroke="#d3ccba" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M636 160L858 546Q744 540 650 508Q662 330 636 160z" fill="#f3efe4" stroke="#d9d3c3" stroke-width="1.5"/>
+
+  <!-- Hull -->
+  <path d="M338 566Q600 574 872 548Q862 592 826 612H372Q350 594 338 566z" fill="#fbf9f3"/>
+  <path d="M358 596Q600 602 846 592Q838 604 826 612H372Q364 606 358 596z" fill="#1d3b57"/>
+  <path d="M347 575Q600 583 867 557" fill="none" stroke="#c79a3b" stroke-width="2.5"/>
+
+  <!-- Deck: cockpit, coachroof, rails -->
+  <path d="M392 567l10-13l84-2l10 15z" fill="#e4e6e2"/>
+  <circle cx="424" cy="548" r="10" fill="none" stroke="#7a8794" stroke-width="2.5"/>
+  <path d="M496 567l24-27l180-3l44 21z" fill="#eef0ee"/>
+  <g fill="#2a4660">
+    <rect x="540" y="547" width="44" height="9" rx="4"/>
+    <rect x="600" y="546" width="44" height="9" rx="4"/>
+    <rect x="658" y="545" width="34" height="9" rx="4"/>
+  </g>
+  <g fill="none" stroke="#8d99a3">
+    <path d="M828 551l12-23l32 4v16M342 566l-2-24l32-2l2 27" stroke-width="2"/>
+    <path d="M372 541L840 529" stroke-width="1.2"/>
+    <path d="M452 566v-27M770 555v-25" stroke-width="1.5"/>
+  </g>
+
+  <!-- Bow wave and wake -->
+  <g fill="none" stroke="#fff" stroke-linecap="round">
+    <path d="M806 614q26-14 58-2" stroke-width="3.5" opacity=".85"/>
+    <path d="M250 618q54-8 116-1M214 634q50-8 104-1" stroke-width="3" opacity=".6"/>
+  </g>
+</svg>

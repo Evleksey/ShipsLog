@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe5f0"/>
+      <stop offset="1" stop-color="#f6f1e4"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#69a8b6"/>
+      <stop offset="1" stop-color="#2c6c84"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="522" fill="url(#sky)"/>
+
+  <!-- Wooded shore with red boathouses -->
+  <path d="M0 522V468q200-32 420 0q140-22 280 4q200-24 500-8v58z" fill="#6f9a8b"/>
+  <g fill="#3f6b5a">
+    <path d="M40 470l22-56l22 56zM96 474l18-46l18 46zM330 462l22-58l22 58zM392 468l18-46l18 46zM760 470l22-58l22 58zM820 474l18-44l18 44zM1060 466l22-56l22 56zM1124 470l18-44l18 44z"/>
+  </g>
+  <path d="M146 464l41-26l41 26z" fill="#33414e"/>
+  <rect x="152" y="464" width="70" height="48" fill="#9c3b2c"/>
+  <rect x="178" y="482" width="18" height="30" fill="#f6f1e4"/>
+  <path d="M236 476l30-19l30 19z" fill="#33414e"/>
+  <rect x="241" y="476" width="50" height="36" fill="#9c3b2c"/>
+  <rect x="258" y="488" width="14" height="14" fill="#f6f1e4"/>
+  <path d="M900 470l36-22l36 22z" fill="#33414e"/>
+  <rect x="906" y="470" width="60" height="42" fill="#9c3b2c"/>
+  <rect x="928" y="486" width="16" height="26" fill="#f6f1e4"/>
+
+  <rect y="512" width="1200" height="288" fill="url(#sea)"/>
+  <g fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3" opacity=".28">
+    <path d="M70 560q30-7 60 0M220 600q34-8 68 0M100 680q44-10 88 0M640 706q50-11 100 0M330 748q52-11 104 0M900 730q46-10 92 0"/>
+  </g>
+
+  <!-- Jetty -->
+  <rect x="1022" y="536" width="18" height="120" fill="#6b5335"/>
+  <rect x="1132" y="536" width="18" height="120" fill="#6b5335"/>
+  <rect x="996" y="560" width="204" height="16" fill="#b08d5f"/>
+  <rect x="996" y="574" width="204" height="5" fill="#8a6c45"/>
+  <path d="M1022 656q9 10 18 0M1132 656q9 10 18 0" fill="none" stroke="#fff" stroke-width="2.5" opacity=".5"/>
+
+  <!-- Reflection -->
+  <path d="M360 616h440q-90 26-220 26q-140 0-220-26z" fill="#e9742b" opacity=".2"/>
+  <path d="M318 612h500q-70 20-250 22q-180-2-250-22z" fill="#173f58" opacity=".3"/>
+
+  <!-- Outboard -->
+  <path d="M298 534h24l-4 84h-16z" fill="#33414e"/>
+  <rect x="290" y="606" width="34" height="8" rx="3" fill="#27323b"/>
+  <path d="M262 500q0-22 24-24h40q18 2 18 24v34h-74z" fill="#1f2a35"/>
+  <rect x="272" y="506" width="66" height="6" fill="#c8452f"/>
+  <rect x="332" y="540" width="26" height="12" fill="#55626e"/>
+
+  <!-- Hull, tube, grab line -->
+  <path d="M352 588l456-4q-18 22-48 28H400q-32-6-48-24z" fill="#33414e"/>
+  <path d="M318 566q0-26 34-28l448-8q68 0 98 26q-28 28-98 30l-448 4q-34 0-34-24z" fill="#e9742b"/>
+  <path d="M350 548l450-8q50 0 80 14" fill="none" stroke="#f6a35f" stroke-width="6" stroke-linecap="round"/>
+  <path d="M330 572l550-10" stroke="#2b3a47" stroke-width="5"/>
+  <path d="M380 556q40 10 80-2q40 10 80-2q40 10 80-2q40 10 80-2" fill="none" stroke="#fbfbf8" stroke-width="3"/>
+
+  <!-- Seat and console -->
+  <path d="M480 538l4-32h46l6 31z" fill="#2b3a47"/>
+  <path d="M560 536l8-50h54l12 48z" fill="#eef0ee"/>
+  <path d="M604 486l8-24h16l-6 24z" fill="#8fbdd1" opacity=".85"/>
+  <circle cx="590" cy="480" r="11" fill="none" stroke="#33414e" stroke-width="3"/>
+
+  <!-- Mooring line to the jetty -->
+  <path d="M896 556q62 46 128 14" fill="none" stroke="#f1e9d2" stroke-width="3"/>
+</svg>

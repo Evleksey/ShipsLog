@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="chrome" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8d99a3"/>
+      <stop offset=".3" stop-color="#f4f7f9"/>
+      <stop offset=".6" stop-color="#b9c3ca"/>
+      <stop offset="1" stop-color="#7f8c97"/>
+    </linearGradient>
+    <linearGradient id="coaming" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4f5f3"/>
+      <stop offset="1" stop-color="#dfe3e1"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="448" fill="url(#coaming)"/>
+  <rect y="446" width="800" height="154" fill="#c49a6c"/>
+  <path d="M0 484h800M0 522h800M0 560h800" stroke="#8a6a48" stroke-width="2"/>
+  <ellipse cx="400" cy="452" rx="150" ry="12" fill="#000" opacity=".16"/>
+
+  <!-- Sheet leading in from the left -->
+  <path d="M0 404L324 372" stroke="#f4f1e8" stroke-width="22"/>
+  <path d="M0 404L324 372" stroke="#c8452f" stroke-width="6" stroke-dasharray="6 22"/>
+
+  <!-- Base and drum -->
+  <rect x="296" y="420" width="208" height="28" rx="7" fill="#b9c3ca" stroke="#7f8c97" stroke-width="2"/>
+  <path d="M306 422q34-90 12-182h164q-22 92 12 182z" fill="url(#chrome)" stroke="#7f8c97" stroke-width="2"/>
+
+  <!-- Three turns of the sheet around the drum -->
+  <g stroke-linecap="round">
+    <path d="M322 372h156M326 342h148M326 312h148" stroke="#f4f1e8" stroke-width="24"/>
+    <path d="M322 372h156M326 342h148M326 312h148" stroke="#c8452f" stroke-width="6" stroke-dasharray="6 22"/>
+  </g>
+
+  <!-- Self-tailing jaws, stripper arm and top cap -->
+  <rect x="296" y="214" width="208" height="20" rx="10" fill="#1c2227"/>
+  <rect x="306" y="190" width="188" height="18" rx="9" fill="#2b3640"/>
+  <rect x="494" y="200" width="42" height="15" rx="5" fill="#1c2227"/>
+  <rect x="330" y="150" width="140" height="42" rx="10" fill="#e6ebef" stroke="#9aa9b3" stroke-width="3"/>
+  <rect x="384" y="140" width="32" height="14" rx="3" fill="#55626e"/>
+
+  <!-- Tail of the sheet, and the winch handle on deck -->
+  <path d="M486 224q90 6 120 110q24 90 194 96" fill="none" stroke="#f4f1e8" stroke-width="22"/>
+  <path d="M486 224q90 6 120 110q24 90 194 96" fill="none" stroke="#c8452f" stroke-width="6" stroke-dasharray="6 22"/>
+  <rect x="150" y="508" width="200" height="20" rx="10" fill="#b9c3ca" stroke="#7f8c97" stroke-width="2"/>
+  <rect x="150" y="480" width="28" height="64" rx="11" fill="#1c2227"/>
+  <rect x="330" y="500" width="34" height="36" rx="6" fill="#8d99a3"/>
+</svg>

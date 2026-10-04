@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c3deee"/>
+      <stop offset="1" stop-color="#eef3f2"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="472" fill="url(#sky)"/>
+
+  <!-- Boatyard: tree line, shed, gravel -->
+  <path d="M0 472v-92q120-30 250-10q150-26 300 6q130-20 250 4v92z" fill="#9db8a6"/>
+  <path d="M626 314l112-52l112 52z" fill="#33414e"/>
+  <rect x="640" y="312" width="200" height="160" fill="#9c3b2c"/>
+  <rect x="640" y="312" width="9" height="160" fill="#f1ead8"/>
+  <rect x="700" y="380" width="64" height="92" fill="#f1ead8"/>
+  <rect y="470" width="800" height="130" fill="#c9c2b3"/>
+  <g fill="#b3ab9a">
+    <ellipse cx="120" cy="540" rx="60" ry="5"/>
+    <ellipse cx="600" cy="560" rx="80" ry="6"/>
+    <ellipse cx="330" cy="576" rx="50" ry="4"/>
+  </g>
+  <ellipse cx="430" cy="482" rx="270" ry="13" fill="#000" opacity=".14"/>
+
+  <!-- Mast and stays -->
+  <rect x="438" width="9" height="200" fill="#9aa9b3"/>
+  <path d="M442 0L160 226M444 0L690 214" stroke="#7f8c97" stroke-width="2"/>
+
+  <!-- Cradle -->
+  <rect x="250" y="468" width="390" height="13" rx="3" fill="#e2b53a"/>
+  <path d="M296 470l36-120M588 470l-30-126" stroke="#e2b53a" stroke-width="11" stroke-linecap="round"/>
+  <rect x="380" y="448" width="112" height="22" fill="#a9825a"/>
+  <path d="M380 459h112" stroke="#8a6a48" stroke-width="2"/>
+
+  <!-- Rudder, propeller, keel -->
+  <path d="M226 322l36 8l-6 92h-20z" fill="#1f5a82"/>
+  <path d="M304 340l-28 26" stroke="#b9c3ca" stroke-width="5"/>
+  <ellipse cx="272" cy="370" rx="6" ry="19" fill="#c79a3b"/>
+  <path d="M360 342l140-2l-22 106l-86 2z" fill="#1f5a82"/>
+  <rect x="384" y="438" width="102" height="13" rx="6" fill="#174766"/>
+
+  <!-- Hull: white topsides, antifouled below the boot stripe -->
+  <path d="M196 300l468-8q-64 40-164 48l-170 4q-90-10-134-44z" fill="#1f5a82"/>
+  <path d="M150 224q270 12 550-14q-10 52-36 82l-468 8q-32-34-46-76z" fill="#fbfaf6" stroke="#d5d9dd" stroke-width="2"/>
+  <path d="M196 300l468-8" stroke="#c8452f" stroke-width="6"/>
+  <path d="M164 240q260 10 524-12" fill="none" stroke="#c79a3b" stroke-width="2.5"/>
+
+  <!-- Deck: coachroof and rails -->
+  <path d="M330 222l22-27l168-6l30 26z" fill="#eef0ee" stroke="#d5d9dd" stroke-width="2"/>
+  <g fill="#2a4660">
+    <rect x="370" y="201" width="40" height="9" rx="4"/>
+    <rect x="426" y="200" width="40" height="9" rx="4"/>
+    <rect x="480" y="199" width="30" height="9" rx="4"/>
+  </g>
+  <path d="M154 224v-24l26-2M700 210v-22l-30-2M180 198l490-12M250 222v-22M600 214v-24" fill="none" stroke="#8d99a3" stroke-width="2"/>
+
+  <!-- Cradle pads against the hull, and the ladder -->
+  <rect x="314" y="338" width="38" height="13" rx="3" fill="#33414e" transform="rotate(6 333 344)"/>
+  <rect x="538" y="332" width="38" height="13" rx="3" fill="#33414e" transform="rotate(-8 557 338)"/>
+  <g stroke="#8d99a3" stroke-linecap="round">
+    <path d="M112 472l56-244M140 472l56-244" stroke-width="6"/>
+    <path d="M120 440h28M127 410h28M134 380h28M141 350h28M148 320h28M155 290h28M162 260h28" stroke-width="5"/>
+  </g>
+</svg>

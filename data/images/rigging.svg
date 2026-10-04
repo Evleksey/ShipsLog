@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8cc4e8"/>
+      <stop offset="1" stop-color="#e3f1f9"/>
+    </linearGradient>
+    <!-- A turnbuckle lying along the x axis: toggle, stud, body, stud, swaged terminal -->
+    <g id="turnbuckle">
+      <rect x="-10" y="-11" width="44" height="22" rx="6" fill="#b9c3ca"/>
+      <circle cx="6" r="6" fill="#55626e"/>
+      <rect x="30" y="-4" width="46" height="8" fill="#8d99a3"/>
+      <rect x="36" y="-7" width="24" height="14" rx="2" fill="#fff"/>
+      <rect x="70" y="-12" width="124" height="24" rx="10" fill="#e6ebef" stroke="#8d99a3" stroke-width="3"/>
+      <rect x="90" y="-4" width="84" height="8" rx="4" fill="#a9d3ea"/>
+      <rect x="188" y="-4" width="46" height="8" fill="#8d99a3"/>
+      <rect x="62" y="-9" width="10" height="18" rx="2" fill="#b9c3ca"/>
+      <rect x="192" y="-9" width="10" height="18" rx="2" fill="#b9c3ca"/>
+      <rect x="230" y="-6.5" width="76" height="13" rx="3" fill="#b9c3ca"/>
+    </g>
+  </defs>
+  <rect width="800" height="362" fill="url(#sky)"/>
+  <path d="M0 362q90-22 190-12q70-12 130 12z" fill="#8fb2aa"/>
+  <rect y="360" width="800" height="130" fill="#4f93ad"/>
+  <path d="M40 400q30-7 60 0M420 420q34-8 68 0M250 452q30-7 60 0M690 396q30-7 60 0" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".35"/>
+
+  <!-- Stanchion and lifelines -->
+  <path d="M0 330h800M0 404h800" stroke="#b9c3ca" stroke-width="3"/>
+  <rect x="106" y="318" width="9" height="172" fill="#b9c3ca"/>
+
+  <!-- Mast -->
+  <rect x="600" width="46" height="500" fill="#c5ced6"/>
+  <rect x="608" width="9" height="500" fill="#e3e9ee"/>
+  <rect x="636" width="4" height="500" fill="#9aa9b3"/>
+
+  <!-- Shrouds running up to the mast -->
+  <path d="M210 484L612 38M330 484L640-142" stroke="#6b7a87" stroke-width="5"/>
+
+  <!-- Toe rail and teak deck -->
+  <rect y="486" width="800" height="16" fill="#8d99a3"/>
+  <g fill="#55626e">
+    <ellipse cx="60" cy="494" rx="12" ry="3"/>
+    <ellipse cx="150" cy="494" rx="12" ry="3"/>
+    <ellipse cx="430" cy="494" rx="12" ry="3"/>
+    <ellipse cx="520" cy="494" rx="12" ry="3"/>
+    <ellipse cx="710" cy="494" rx="12" ry="3"/>
+  </g>
+  <rect y="502" width="800" height="98" fill="#c49a6c"/>
+  <path d="M0 526h800M0 550h800M0 574h800" stroke="#8a6a48" stroke-width="2"/>
+  <rect x="588" y="480" width="70" height="26" rx="4" fill="#8d99a3"/>
+
+  <!-- Chainplates and turnbuckles -->
+  <rect x="197" y="474" width="26" height="30" rx="3" fill="#b9c3ca" stroke="#8d99a3" stroke-width="2"/>
+  <rect x="317" y="474" width="26" height="30" rx="3" fill="#b9c3ca" stroke="#8d99a3" stroke-width="2"/>
+  <use href="#turnbuckle" transform="translate(210 484) rotate(-48)"/>
+  <use href="#turnbuckle" transform="translate(330 484) rotate(-63.65)"/>
+</svg>
