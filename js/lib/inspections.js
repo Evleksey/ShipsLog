@@ -3,33 +3,32 @@ import { daysSince, parseTimestamp } from './time.js';
 const time = (entry) => parseTimestamp(entry.timestamp)?.epochMs ?? 0;
 
 /**
- * For every part of a boat: when it was last inspected and whether that is too long ago.
+ * For every part of a boat: when it was last attended to and whether that is too long ago.
  *
  * A part is any part tag used in the boat's log, plus any part the user has a setting for.
- * Its last inspection is the newest entry carrying both the part tag and the inspection tag.
- * It is overdue when that is more than its interval ago — or when it was never inspected.
+ * Every log entry for a part counts — a service, replacement or repair as much as an
+ * inspection — so the clock runs from the part's newest entry. The part is overdue for
+ * inspection when that entry is more than its interval ago, or when nothing was ever logged.
  *
  * @param {{ inspection?: Object<string, { days?: number, monitored?: boolean }> }} boat
  * @param {Array} entries the boat's log entries
- * @param {{ tag: string, defaultIntervalDays: number }} rules
+ * @param {{ defaultIntervalDays: number }} rules
  */
-export function inspectionReport(boat, entries, { tag, defaultIntervalDays }, now = new Date()) {
-  const inspectionTag = tag.toLowerCase();
-  const lastInspection = new Map();
+export function inspectionReport(boat, entries, { defaultIntervalDays }, now = new Date()) {
+  const newest = new Map();
   for (const entry of entries) {
-    if (!entry.types.some((type) => type.toLowerCase() === inspectionTag)) continue;
     for (const part of entry.parts) {
-      const previous = lastInspection.get(part);
-      if (!previous || time(entry) > time(previous)) lastInspection.set(part, entry);
+      const previous = newest.get(part);
+      if (!previous || time(entry) > time(previous)) newest.set(part, entry);
     }
   }
 
   const settings = boat.inspection ?? {};
-  const parts = new Set([...entries.flatMap((entry) => entry.parts), ...Object.keys(settings)]);
+  const parts = new Set([...newest.keys(), ...Object.keys(settings)]);
   return [...parts].sort((a, b) => a.localeCompare(b)).map((part) => {
     const intervalDays = settings[part]?.days ?? defaultIntervalDays;
     const monitored = settings[part]?.monitored !== false;
-    const lastEntry = lastInspection.get(part) ?? null;
+    const lastEntry = newest.get(part) ?? null;
     const daysAgo = lastEntry ? daysSince(lastEntry.timestamp, now) : null;
     return {
       part,
@@ -43,7 +42,7 @@ export function inspectionReport(boat, entries, { tag, defaultIntervalDays }, no
   });
 }
 
-/** Overdue parts, the longest overdue first and never-inspected parts last. */
+/** Overdue parts, the longest overdue first and parts with nothing logged last. */
 export function overdueParts(report) {
   const daysOver = (item) => (item.daysAgo === null ? -Infinity : item.daysAgo - item.intervalDays);
   return report

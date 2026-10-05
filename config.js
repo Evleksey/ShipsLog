@@ -18,9 +18,12 @@ export default {
   apiBaseUrl: 'api/',
 
   inspection: {
-    /** Entries carrying this type tag count as inspections. */
+    /** The type tag that "Log inspection" on a reminder gives the new entry. */
     tag: 'Inspection',
-    /** Days before a part is overdue, until the user sets that part's own interval. */
+    /**
+     * Days a part may go without any log entry before it is overdue for inspection, until
+     * the user sets that part's own interval.
+     */
     defaultIntervalDays: 14,
   },
 

@@ -1,3 +1,4 @@
+import { hasPosition } from './geo.js';
 import { parseTimestamp } from './time.js';
 
 /** The choices in the log's ordering selector; the first one is the default. */
@@ -54,4 +55,9 @@ export function tagCounts(entries, key, preferred = []) {
 /** The newest entry that recorded engine hours, or null. */
 export function latestEngineHours(entries) {
   return sortEntries(entries.filter((entry) => Number.isFinite(entry.engineHours)), 'newest')[0] ?? null;
+}
+
+/** The newest entry that recorded a position, or null. */
+export function latestPosition(entries) {
+  return sortEntries(entries.filter((entry) => hasPosition(entry.location)), 'newest')[0] ?? null;
 }

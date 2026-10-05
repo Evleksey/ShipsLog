@@ -4,13 +4,13 @@ import { describeDaysAgo } from '../lib/time.js';
 
 /**
  * Inspection reminder settings for one boat: per part, whether to remind and after how many
- * days without an inspection.
+ * days without a log entry.
  *
  * @param {HTMLDialogElement} dialog
  * @param {Object} options
  * @param {Object} options.boat
  * @param {Array} options.report                the boat's inspectionReport()
- * @param {{ tag: string, defaultIntervalDays: number }} options.rules
+ * @param {{ defaultIntervalDays: number }} options.rules
  * @param {(settings: Object) => Promise<void>} options.onSave
  */
 export function openSettingsDialog(dialog, { boat, report, rules, onSave }) {
@@ -41,7 +41,8 @@ export function openSettingsDialog(dialog, { boat, report, rules, onSave }) {
     body: h('div', { class: 'form' },
       problem,
       h('p', { class: 'form__intro' },
-        `A part is flagged as overdue when its newest log entry tagged “${rules.tag}” is older than the number of days set here.`),
+        'A part is flagged as overdue for inspection when nothing has been logged for it — an inspection or '
+        + 'any other entry — within the number of days set here.'),
       list,
       none,
       h('div', { class: 'field' },
@@ -60,7 +61,12 @@ export function openSettingsDialog(dialog, { boat, report, rules, onSave }) {
   });
 
   function addRow({ part, monitored, intervalDays, lastEntry, daysAgo }) {
-    const remind = h('input', { type: 'checkbox', checked: monitored, 'aria-label': `Remind about ${part} inspections`, onchange: sync });
+    const remind = h('input', {
+      type: 'checkbox',
+      checked: monitored,
+      'aria-label': `Remind about ${part} inspections`,
+      onchange: sync,
+    });
     const days = h('input', {
       class: 'input input--days',
       type: 'number',
@@ -69,12 +75,12 @@ export function openSettingsDialog(dialog, { boat, report, rules, onSave }) {
       step: 1,
       required: true,
       inputmode: 'numeric',
-      'aria-label': `Days between ${part} inspections`,
+      'aria-label': `Days before ${part} is overdue`,
       value: intervalDays,
     });
     const element = h('li', { class: 'intervals__row' },
       h('label', { class: 'intervals__part' }, remind, tagPill(part, 'part')),
-      h('span', { class: 'intervals__last' }, lastEntry ? `Inspected ${describeDaysAgo(daysAgo)}` : 'No inspection logged'),
+      h('span', { class: 'intervals__last' }, lastEntry ? `Last entry ${describeDaysAgo(daysAgo)}` : 'Nothing logged'),
       h('span', { class: 'intervals__days' }, 'every', days, 'days'),
     );
 

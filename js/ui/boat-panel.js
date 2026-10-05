@@ -8,7 +8,7 @@ const capitalize = (text) => text.charAt(0).toUpperCase() + text.slice(1);
 
 /**
  * The top of the page: the boat's picture and general information, and underneath the
- * reminder for inspections that are overdue.
+ * reminder for parts that are overdue for inspection.
  */
 export function renderBoatPanel(root, { boat, entries, report, source, onLogInspection, onOpenSettings }) {
   root.replaceChildren(
@@ -61,8 +61,8 @@ function inspectionNotice(report, { onLogInspection, onOpenSettings }) {
         tagPill(item.part, 'part'),
         h('span', { class: 'notice__text' },
           item.lastEntry
-            ? ['Last inspected ', h('strong', {}, describeDaysAgo(item.daysAgo)), ` (${formatDate(item.lastEntry.timestamp)})`]
-            : h('strong', {}, 'No inspection logged yet'),
+            ? ['Last entry ', h('strong', {}, describeDaysAgo(item.daysAgo)), ` (${formatDate(item.lastEntry.timestamp)})`]
+            : h('strong', {}, 'Nothing logged yet'),
           h('span', { class: 'notice__interval' }, ` · due every ${item.intervalDays} days`),
         ),
         h('button', { class: 'btn btn--small', type: 'button', onclick: () => onLogInspection(item.part) }, 'Log inspection'),

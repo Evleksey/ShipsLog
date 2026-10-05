@@ -1,5 +1,5 @@
 import { inspectionReport } from './lib/inspections.js';
-import { latestEngineHours, tagCounts } from './lib/log.js';
+import { latestEngineHours, latestPosition, tagCounts } from './lib/log.js';
 import { renderBoatPanel } from './ui/boat-panel.js';
 import { renderDataMenu } from './ui/data-menu.js';
 import { h } from './ui/dom.js';
@@ -164,6 +164,8 @@ export async function startApp(config, createDataSource) {
       typeOptions: offered('types', config.typeTags),
       partOptions: offered('parts', config.partTags),
       lastEngineHours: latestEngineHours(state.entries)?.engineHours,
+      lastPosition: latestPosition(state.entries)?.location,
+      map: config.map,
       source,
       // The data source answers with the entry as it was saved; that is what goes on screen.
       onSave: async (draft) => {

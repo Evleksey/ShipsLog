@@ -3,18 +3,14 @@
 A maintenance log for boats: what was inspected, serviced, replaced or repaired — when, where,
 at how many engine hours, with pictures. One log per boat.
 
-The site is plain HTML, CSS and JavaScript modules. There is nothing to install or build, and it
-runs in two ways from the same files:
 
-- **as a static demo** (GitHub Pages): the log is imported from a JSON file;
-- **on the boat's own hardware**: the log is read from and saved to a backend over HTTP.
-  The backend is not written yet; its contract is in [docs/backend-api.md](docs/backend-api.md).
 
 ## What it does
 
 - **Boat selector** at the top, then the boat's picture and general information.
-- **Inspection reminders.** A part is flagged when its newest log entry tagged *Inspection* is
-  older than its interval: 14 days, unless you set another number for that part under
+- **Inspection reminders.** A part is flagged when nothing has been logged for it within its
+  interval. Every entry for the part counts — a service, replacement or repair as much as an
+  inspection. The interval is 14 days, unless you set another number for that part under
   *Reminder settings*. Reminders can also be switched off per part.
 - **The log.** Every entry has type tags (Inspection, Service, Replacement, …), part tags
   (Engine, Hull, Rigging, Sails, …), a date and time, and pictures. Above the list: a filter for
@@ -22,22 +18,14 @@ runs in two ways from the same files:
 - **Entry details.** Clicking an entry opens a popup with the date, time, engine hours, the
   place on a minimap, the notes and the pictures.
 - **Writing the log.** *New entry* adds an entry; entries can be edited and deleted from their
-  popup. *Log inspection* on a reminder opens the form with the tags filled in.
+  popup. *Log inspection* on a reminder opens the form with the tags filled in. The position
+  can be typed in, taken from the device, or picked on a map: *Pick on map* opens one where the
+  boat was last logged — drag to move it, click to set the position.
 
 The address bar follows what is on screen (`?boat=aurora&entry=aurora-15`), so a boat or a
 single entry can be bookmarked or shared.
 
-## Run it locally
 
-Serve the folder with any static web server and open it:
-
-```sh
-python3 -m http.server 8000
-# then open http://localhost:8000
-```
-
-Opening `index.html` straight from disk does not work: browsers only load JavaScript modules
-and data files over HTTP.
 
 ## Publish the demo on GitHub Pages
 
@@ -102,7 +90,7 @@ or change `staticDataUrl` in [config.js](config.js) to point at another file.
 | `boats[].id`, `name` | id | The id is what entries refer to; the name is shown in the selector. |
 | `boats[].type`, `description`, `picture` | no | Shown in the boat's header. |
 | `boats[].details` | no | General information as label/value pairs, shown in this order. |
-| `boats[].inspection` | no | Reminder settings per part tag: `days` between inspections (14 when absent) and `monitored: false` to switch reminders for that part off. |
+| `boats[].inspection` | no | Reminder settings per part tag: `days` the part may go without a log entry (14 when absent) and `monitored: false` to switch reminders for that part off. |
 | `entries[].id`, `boatId`, `timestamp` | yes | Ids must be unique. The timestamp is ship's time with its UTC offset. |
 | `entries[].title` | no | Defaults to "Untitled entry". |
 | `entries[].types`, `parts` | no | Tags: what was done, and to which part. Any text works; tags are not a fixed list. |
@@ -118,7 +106,7 @@ Things worth knowing:
   together), full URLs, or `data:` URLs. Pictures added on the page are scaled down and embedded
   as `data:` URLs.
 - **Which parts get reminders:** every part tag used in the boat's log, plus every part listed
-  under `inspection`. A part that has entries but no inspection yet is flagged as well.
+  under `inspection`. A part listed there with nothing logged yet is flagged straight away.
 - **`demo.anchorDate`** exists for the demo only. When the file contains
   `"demo": { "anchorDate": "2026-10-04" }`, every timestamp is moved by the number of days
   between that date and today when the file is loaded, so the demo never grows stale: an
@@ -140,9 +128,9 @@ Three things small web servers get wrong:
   to run modules served as `text/plain` or `application/octet-stream`.
 - *Use current position* in the entry form only appears on pages served over HTTPS (or from
   `localhost`): browsers do not hand out the device's position to plain-HTTP pages.
-- The minimap loads map tiles from the internet. Without a connection it still shows the
-  position, on a plain grid. For charts on board, point `map.layers` in `config.js` at a tile
-  server on the boat's network.
+- The maps load their tiles from the internet. Without a connection an entry still shows its
+  position, on a plain grid, but there is nothing to pick a position on. For charts on board,
+  point `map.layers` in `config.js` at a tile server on the boat's network.
 
 ## Configuration
 
@@ -153,38 +141,15 @@ Everything that differs between installations is in [config.js](config.js).
 | `dataSource` | `'static'` | `'static'` (data file) or `'api'` (backend). |
 | `staticDataUrl` | `'data/shipslog.json'` | The data file of the static site. |
 | `apiBaseUrl` | `'api/'` | Where the backend lives, relative to `index.html` or absolute. |
-| `inspection.tag` | `'Inspection'` | The type tag that marks an entry as an inspection. |
-| `inspection.defaultIntervalDays` | `14` | Days before a part is overdue, until the user sets its own interval. |
+| `inspection.tag` | `'Inspection'` | The type tag that *Log inspection* gives the new entry. |
+| `inspection.defaultIntervalDays` | `14` | Days a part may go without a log entry before it is overdue, until the user sets its own interval. |
 | `typeTags`, `partTags` | see file | Tags always offered in the entry form. |
-| `map.zoom` | `11` | Starting zoom of the minimap. |
-| `map.layers` | OpenStreetMap + OpenSeaMap seamarks | Tile layers, bottom first. Empty list: no map, position only. |
+| `map.zoom` | `11` | Starting zoom of the maps. |
+| `map.layers` | OpenStreetMap + OpenSeaMap seamarks | Tile layers, bottom first. Empty list: no maps — positions are shown on a grid and *Pick on map* is not offered. |
 | `map.linkUrl`, `map.linkLabel` | OpenStreetMap | The "open full map" link in an entry's details. |
 
-## How the code is organised
-
-```
-index.html              page skeleton and the icon sprite
-config.js               deployment configuration
-css/styles.css          all styles; light and dark follow the system setting
-js/main.js              entry point
-js/app.js               loads boats and entries, wires the views to the data source
-js/data/index.js        the DataSource interface and the data shapes (start reading here)
-js/data/static-source.js    data file + browser storage — the module for static hosting
-js/data/api-source.js       REST client — the module for the boat's backend
-js/data/schema.js       validates and tidies boats and entries from either source
-js/lib/                 rules without any page: time, positions, filtering, inspections
-js/ui/                  one file per piece of the page: boat panel, log, dialogs, minimap
-data/                   demo log and its pictures
-docs/backend-api.md     the contract for the backend
-```
-
-The pages never touch storage directly. They call a `DataSource`; `config.js` decides which one
-is loaded. A new kind of storage is one more file next to `static-source.js` and
-`api-source.js`, plus a line in `js/data/index.js`.
 
 ## Map data
 
 The minimap shows tiles from [OpenStreetMap](https://www.openstreetmap.org/copyright)
 (© OpenStreetMap contributors) with seamarks from [OpenSeaMap](https://www.openseamap.org/).
-Their public tile servers are fine for a demo and for personal use; an installation with real
-traffic should use its own tiles.

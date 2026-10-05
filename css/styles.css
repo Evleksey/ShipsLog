@@ -1272,6 +1272,19 @@ a {
   font-size: 0.75rem;
 }
 
+/* The map as a position picker (entry form): it can be dragged, and a click sets the marker. */
+.minimap--picker {
+  min-height: 17rem;
+  cursor: crosshair;
+  touch-action: none; /* a finger moves the map, not the page */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.minimap--dragging {
+  cursor: grabbing;
+}
+
 @media (prefers-color-scheme: dark) {
   /* Daylight map tiles are harsh on a dark screen at night. */
   .minimap__tile {
@@ -1349,6 +1362,17 @@ a {
 .form__intro {
   color: var(--ink-soft);
   font-size: 0.9375rem;
+}
+
+.form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.position-picker {
+  display: grid;
+  gap: 0.4rem;
 }
 
 .form-error {

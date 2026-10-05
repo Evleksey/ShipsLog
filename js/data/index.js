@@ -13,8 +13,9 @@
  * @property {InspectionSettings} inspection
  *
  * @typedef {Object<string, { days?: number, monitored?: boolean }>} InspectionSettings
- *   Per part tag: `days` between inspections before the part is overdue (the configured
- *   default when absent) and `monitored: false` to switch reminders for the part off.
+ *   Per part tag: `days` the part may go without a log entry before it is overdue for
+ *   inspection (the configured default when absent) and `monitored: false` to switch
+ *   reminders for the part off.
  *
  * @typedef {Object} LogEntry
  * @property {string} id

@@ -74,8 +74,8 @@ Only `id` is required. `details` is shown as given, in order. `inspection` holds
 - `timestamp` is the wall-clock time where the entry was made, with its UTC offset
   (ISO 8601). Store and return it exactly as received: the page shows the wall-clock part and
   uses the offset only for ordering.
-- `types` and `parts` are free-text tags. An entry counts as an inspection when `types`
-  contains the tag configured as `inspection.tag` (default `Inspection`).
+- `types` and `parts` are free-text tags. Whatever its type, an entry counts towards the
+  inspection reminder of every part it names.
 - `engineHours`, `location`, `notes` and `pictures` are optional. `location` may carry a
   `name`, a position (`lat` and `lon` together, decimal degrees, south and west negative), or
   both.
@@ -109,9 +109,9 @@ draft has been cleared by the user.
 }
 ```
 
-One key per part tag. `days` is the number of days after which the part is overdue for
-inspection (1–3650; the configured default of 14 when absent). `monitored: false` switches
-reminders for the part off. `PUT boats/{boatId}/inspection` sends the complete map and replaces
+One key per part tag. `days` is how long the part may go without a log entry before it is
+overdue for inspection (1–3650; the configured default of 14 when absent). `monitored: false`
+switches reminders for the part off. `PUT boats/{boatId}/inspection` sends the complete map and replaces
 whatever was stored.
 
 ## Errors

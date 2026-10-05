@@ -57,7 +57,10 @@
         { "label": "Built", "value": "2019" },
         { "label": "Length overall", "value": "4.2 m" },
         { "label": "Engine", "value": "30 hp outboard" }
-      ]
+      ],
+      "inspection": {
+        "Trailer": { "days": 30 }
+      }
     }
   ],
   "entries": [

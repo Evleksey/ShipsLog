@@ -8,7 +8,7 @@ import { formatLongDate, formatTime, formatUtcOffset } from '../lib/time.js';
 /** The popup behind a log entry: date, time, engine hours, the place on a minimap, notes, pictures. */
 export function openEntryDialog(dialog, { entry, config, source, onEdit, onDelete, onClose }) {
   const located = hasPosition(entry.location);
-  const minimap = located ? createMinimap({ ...entry.location, map: config.map }) : null;
+  const minimap = located ? createMinimap({ position: entry.location, map: config.map }) : null;
   const problem = h('p', { class: 'form-error', role: 'alert', hidden: true });
   const offset = formatUtcOffset(entry.timestamp);
 

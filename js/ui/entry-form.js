@@ -1,5 +1,6 @@
 import { h, icon } from './dom.js';
 import { openDialog } from './dialog.js';
+import { createMinimap } from './minimap.js';
 import { readPicture } from './pictures.js';
 import { formatEngineHours } from '../lib/format.js';
 import { fromInputValue, nowInputValue, parseTimestamp, toInputValue } from '../lib/time.js';
@@ -16,12 +17,17 @@ let fieldCount = 0;
  * @param {string[]} options.typeOptions     type tags to offer
  * @param {string[]} options.partOptions     part tags to offer
  * @param {number} [options.lastEngineHours] shown as a hint
+ * @param {{ lat: number, lon: number }} [options.lastPosition]  where the position map opens
+ * @param {Object} [options.map]             the `map` section of config.js, for the position map
  * @param {Object} options.source            the data source, for showing pictures
  * @param {(draft: Object) => Promise<void>} options.onSave
  */
-export function openEntryForm(dialog, { entry, prefill = {}, typeOptions, partOptions, lastEngineHours, source, onSave }) {
+export function openEntryForm(dialog, {
+  entry, prefill = {}, typeOptions, partOptions, lastEngineHours, lastPosition, map, source, onSave,
+}) {
   const start = entry ?? prefill;
   const pictures = (entry?.pictures ?? []).map((picture) => ({ ...picture }));
+  let picker = null; // the position map, once it has been asked for
 
   const title = input({
     type: 'text',
@@ -65,6 +71,15 @@ export function openEntryForm(dialog, { entry, prefill = {}, typeOptions, partOp
     type: 'button',
     onclick: useCurrentPosition,
   }, icon('crosshair'), 'Use current position');
+  // Picking a spot needs something to pick it on: no map layers, no map button.
+  const pickLabel = h('span', {}, 'Pick on map');
+  const pick = (map?.layers ?? []).length > 0 && h('button', {
+    class: 'btn btn--small',
+    type: 'button',
+    'aria-expanded': 'false',
+    onclick: togglePicker,
+  }, icon('pin'), pickLabel);
+  const pickerHolder = h('div', { class: 'position-picker', hidden: true });
 
   const problem = h('p', { class: 'form-error', role: 'alert', hidden: true });
   const save = h('button', { class: 'btn btn--primary', type: 'submit' }, entry ? 'Save changes' : 'Add to log');
@@ -90,7 +105,8 @@ export function openEntryForm(dialog, { entry, prefill = {}, typeOptions, partOp
           field('Longitude', longitude),
         ),
         h('p', { class: 'field__hint' }, 'Position in decimal degrees; south and west are negative.'),
-        locate && h('div', {}, locate),
+        (pick || locate) && h('div', { class: 'form__actions' }, pick, locate),
+        pickerHolder,
       ),
       field('Notes', notes),
       h('div', { class: 'field' },
@@ -104,6 +120,7 @@ export function openEntryForm(dialog, { entry, prefill = {}, typeOptions, partOp
       h('button', { class: 'btn', type: 'button', onclick: () => dialog.close() }, 'Cancel'),
       save,
     ],
+    onClose: () => picker?.destroy(),
   });
 
   function renderPictures() {
@@ -147,13 +164,53 @@ export function openEntryForm(dialog, { entry, prefill = {}, typeOptions, partOp
     renderPictures();
   }
 
+  /**
+   * Shows or hides the map for picking the position. The map is only built — and its tiles
+   * only fetched — the first time it is asked for.
+   */
+  function togglePicker() {
+    const open = pickerHolder.hidden;
+    pickerHolder.hidden = !open;
+    pick.setAttribute('aria-expanded', String(open));
+    pickLabel.textContent = open ? 'Hide map' : 'Pick on map';
+    if (!open) return;
+    if (!picker) {
+      // It opens on the position in the fields, else where the boat was last logged.
+      picker = createMinimap({ position: typedPosition(), center: lastPosition, map, onPick: writePosition });
+      pickerHolder.append(
+        picker.element,
+        h('p', { class: 'field__hint' }, 'Drag to move the map, click to set the position.'),
+      );
+    }
+    picker.draw();
+    pickerHolder.scrollIntoView({ block: 'nearest' });
+  }
+
+  /** The position in the two fields, or null while they don't hold a complete, valid one. */
+  function typedPosition() {
+    const position = { lat: latitude.valueAsNumber, lon: longitude.valueAsNumber };
+    const complete = Number.isFinite(position.lat) && Number.isFinite(position.lon);
+    return complete && latitude.validity.valid && longitude.validity.valid ? position : null;
+  }
+
+  /** Puts a position into the fields, to about a metre. */
+  function writePosition({ lat, lon }) {
+    latitude.value = lat.toFixed(5);
+    longitude.value = lon.toFixed(5);
+    clearPositionProblem();
+  }
+
+  function positionTyped() {
+    clearPositionProblem();
+    picker?.setPosition(typedPosition());
+  }
+
   function useCurrentPosition() {
     locate.disabled = true;
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => {
-        latitude.value = coords.latitude.toFixed(5);
-        longitude.value = coords.longitude.toFixed(5);
-        clearPositionProblem();
+        writePosition({ lat: coords.latitude, lon: coords.longitude });
+        picker?.setPosition(typedPosition());
         locate.disabled = false;
       },
       () => {
@@ -174,7 +231,7 @@ export function openEntryForm(dialog, { entry, prefill = {}, typeOptions, partOp
       inputmode: 'decimal',
       placeholder,
       value: value ?? '',
-      oninput: clearPositionProblem,
+      oninput: positionTyped,
     });
   }
 
