@@ -1,8 +1,10 @@
+import { plural } from './lib/format.js';
 import { inspectionReport } from './lib/inspections.js';
 import { latestEngineHours, latestPosition, tagCounts } from './lib/log.js';
+import { openBoatForm } from './ui/boat-form.js';
 import { renderBoatPanel } from './ui/boat-panel.js';
 import { renderDataMenu } from './ui/data-menu.js';
-import { h } from './ui/dom.js';
+import { h, icon } from './ui/dom.js';
 import { openEntryDialog } from './ui/entry-dialog.js';
 import { openEntryForm } from './ui/entry-form.js';
 import { createLogView } from './ui/log-view.js';
@@ -14,13 +16,15 @@ const element = (id) => document.getElementById(id);
 
 /**
  * Runs the page: loads the boats, shows the chosen boat with its log, and carries out what
- * the views ask for — open an entry, save one, change the reminder settings.
+ * the views ask for — add, change or delete a boat, open an entry, save one, change the
+ * reminder settings.
  */
 export async function startApp(config, createDataSource) {
   const page = {
     main: element('main'),
     status: element('status'),
     boatSelect: element('boat-select'),
+    boatAdd: element('boat-add'),
     boatPanel: element('boat-panel'),
     logPanel: element('log-panel'),
     dataMenu: element('data-menu'),
@@ -49,6 +53,8 @@ export async function startApp(config, createDataSource) {
     await source.init();
     logView = createLogView(page.logPanel, { config, source, onOpen: openEntry, onNew: () => editEntry(null) });
     page.boatSelect.addEventListener('change', () => selectBoat(page.boatSelect.value));
+    page.boatAdd.addEventListener('click', () => editBoat(null));
+    page.boatAdd.disabled = false;
     if (source.kind === 'static') {
       renderDataMenu(page.dataMenu, { source, onChanged: () => loadBoats(state.boat?.id) });
     }
@@ -61,16 +67,26 @@ export async function startApp(config, createDataSource) {
   }
 
   async function loadBoats(preferredId) {
-    state.boats = await source.listBoats();
-    page.boatSelect.replaceChildren(...state.boats.map((boat) => h('option', { value: boat.id }, boat.name)));
-    page.boatSelect.disabled = state.boats.length === 0;
-    if (state.boats.length === 0) {
+    await showBoats(await source.listBoats(), preferredId);
+  }
+
+  /** Fills the boat selector and shows the preferred boat, or else the first one. */
+  async function showBoats(boats, preferredId) {
+    state.boats = boats;
+    page.boatSelect.replaceChildren(...boats.map((boat) => h('option', { value: boat.id }, boat.name)));
+    page.boatSelect.disabled = boats.length === 0;
+    if (boats.length === 0) {
+      latestRequest += 1; // a boat still being opened no longer exists
       state.boat = null;
-      showStatus('There are no boats in this log yet.');
+      state.entries = [];
+      document.title = 'Ship’s Log';
+      updateLink();
+      showStatus('There are no boats in this log yet.', false,
+        h('button', { class: 'btn btn--primary', type: 'button', onclick: () => editBoat(null) }, icon('plus'), 'Add a boat'));
       renderFooter();
       return;
     }
-    const boat = state.boats.find((candidate) => candidate.id === preferredId) ?? state.boats[0];
+    const boat = boats.find((candidate) => candidate.id === preferredId) ?? boats[0];
     await selectBoat(boat.id);
   }
 
@@ -121,6 +137,7 @@ export async function startApp(config, createDataSource) {
       entries: state.entries,
       report: report(),
       source,
+      onEdit: () => editBoat(state.boat),
       onOpenSettings: openSettings,
       onLogInspection: (part) => editEntry(null, {
         title: `${part} inspected`,
@@ -182,6 +199,38 @@ export async function startApp(config, createDataSource) {
     });
   }
 
+  /** The form for a new boat (`boat` is null) or for changing or deleting the one on screen. */
+  function editBoat(boat) {
+    openBoatForm(page.formDialog, {
+      boat,
+      entryCount: boat ? state.entries.length : 0,
+      source,
+      onSave: async (draft) => {
+        if (boat) {
+          const saved = await source.updateBoat(boat.id, draft);
+          state.boats = state.boats.map((existing) => (existing.id === boat.id ? saved : existing));
+          state.boat = saved;
+          page.boatSelect.selectedOptions[0].textContent = saved.name;
+          document.title = `${saved.name} · Ship’s Log`;
+          renderBoat();
+          renderFooter();
+          toast('Boat updated');
+        } else {
+          const saved = await source.createBoat(draft);
+          toast(`${saved.name} added`);
+          await showBoats([...state.boats, saved], saved.id);
+        }
+      },
+      onDelete: async () => {
+        await source.deleteBoat(boat.id);
+        toast(state.entries.length > 0
+          ? `${boat.name} and ${plural(state.entries.length, 'log entry', 'log entries')} deleted`
+          : `${boat.name} deleted`);
+        await showBoats(state.boats.filter((existing) => existing.id !== boat.id));
+      },
+    });
+  }
+
   function openSettings() {
     openSettingsDialog(page.settingsDialog, {
       boat: state.boat,
@@ -199,18 +248,23 @@ export async function startApp(config, createDataSource) {
   /** Keeps the address bar pointing at what is on screen, so it can be bookmarked or shared. */
   function updateLink(entryId) {
     const url = new URL(window.location.href);
-    url.searchParams.set('boat', state.boat.id);
+    if (state.boat) url.searchParams.set('boat', state.boat.id);
+    else url.searchParams.delete('boat');
     if (entryId) url.searchParams.set('entry', entryId);
     else url.searchParams.delete('entry');
     window.history.replaceState(null, '', url);
   }
 
-  /** Replaces the boat and its log with a message; a failure also offers to start over. */
-  function showStatus(message, failed = false) {
-    page.status.replaceChildren(
+  /**
+   * Replaces the boat and its log with a message; a failure also offers to start over, and
+   * `action` is a button for whatever else can be done about it.
+   */
+  function showStatus(message, failed = false, action = null) {
+    page.status.replaceChildren(...[
       h('span', {}, message),
       failed && h('button', { class: 'btn', type: 'button', onclick: () => window.location.reload() }, 'Try again'),
-    );
+      action,
+    ].filter(Boolean));
     page.status.classList.toggle('page__status--error', failed);
     page.status.hidden = false;
     page.boatPanel.hidden = true;

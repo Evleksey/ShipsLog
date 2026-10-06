@@ -12,6 +12,8 @@
  * @property {{ label: string, value: string }[]} details   general information, shown in order
  * @property {InspectionSettings} inspection
  *
+ * @typedef {Omit<Boat, 'id' | 'inspection'>} BoatDraft
+ *
  * @typedef {Object<string, { days?: number, monitored?: boolean }>} InspectionSettings
  *   Per part tag: `days` the part may go without a log entry before it is overdue for
  *   inspection (the configured default when absent) and `monitored: false` to switch
@@ -35,6 +37,9 @@
  * @property {'static' | 'api'} kind
  * @property {() => Promise<void>} init
  * @property {() => Promise<Boat[]>} listBoats
+ * @property {(draft: BoatDraft) => Promise<Boat>} createBoat
+ * @property {(boatId: string, draft: BoatDraft) => Promise<Boat>} updateBoat   keeps the reminder settings
+ * @property {(boatId: string) => Promise<void>} deleteBoat   deletes the boat's log with it
  * @property {(boatId: string) => Promise<LogEntry[]>} listEntries
  * @property {(boatId: string, draft: LogEntryDraft) => Promise<LogEntry>} createEntry
  * @property {(boatId: string, entryId: string, draft: LogEntryDraft) => Promise<LogEntry>} updateEntry

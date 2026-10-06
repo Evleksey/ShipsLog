@@ -10,7 +10,7 @@ const capitalize = (text) => text.charAt(0).toUpperCase() + text.slice(1);
  * The top of the page: the boat's picture and general information, and underneath the
  * reminder for parts that are overdue for inspection.
  */
-export function renderBoatPanel(root, { boat, entries, report, source, onLogInspection, onOpenSettings }) {
+export function renderBoatPanel(root, { boat, entries, report, source, onEdit, onLogInspection, onOpenSettings }) {
   root.replaceChildren(
     h('article', { class: 'boat' },
       h('figure', { class: 'boat__picture' },
@@ -19,8 +19,13 @@ export function renderBoatPanel(root, { boat, entries, report, source, onLogInsp
           : h('span', { class: 'boat__no-picture' }, icon('anchor')),
       ),
       h('div', { class: 'boat__body' },
-        boat.type && h('p', { class: 'boat__type' }, boat.type),
-        h('h1', { class: 'boat__name' }, boat.name),
+        h('div', { class: 'boat__head' },
+          h('div', { class: 'boat__title' },
+            boat.type && h('p', { class: 'boat__type' }, boat.type),
+            h('h1', { class: 'boat__name' }, boat.name),
+          ),
+          h('button', { class: 'btn btn--small', type: 'button', onclick: onEdit }, icon('edit'), 'Edit boat'),
+        ),
         boat.description && h('p', { class: 'boat__description' }, boat.description),
         facts(boat, entries),
       ),

@@ -11,18 +11,20 @@ answers are JSON (`Content-Type: application/json`).
 | Method | Path | Request body | Answer |
 | --- | --- | --- | --- |
 | `GET` | `boats` | — | `200` with a list of [boats](#boat) |
+| `POST` | `boats` | a boat [draft](#boat-draft) | `200` or `201` with the saved boat |
+| `PUT` | `boats/{boatId}` | a boat [draft](#boat-draft) | `200` with the saved boat |
+| `DELETE` | `boats/{boatId}` | — | `200` or `204`; a body is ignored |
 | `GET` | `boats/{boatId}/entries` | — | `200` with the boat's [entries](#log-entry), in any order |
 | `POST` | `boats/{boatId}/entries` | an entry [draft](#draft) | `200` or `201` with the saved entry |
 | `PUT` | `boats/{boatId}/entries/{entryId}` | an entry [draft](#draft) | `200` with the saved entry |
 | `DELETE` | `boats/{boatId}/entries/{entryId}` | — | `200` or `204`; a body is ignored |
 | `PUT` | `boats/{boatId}/inspection` | [inspection settings](#inspection-settings) | `200` with the saved settings |
 
-That is the whole API. Boats themselves are not created or edited from the page; they are
-whatever the backend returns from `GET boats`.
+That is the whole API.
 
 The page asks for the boats once when it opens, and for a boat's entries each time that boat is
-selected. After a change it shows the entry from the answer rather than asking again — which is
-why `POST` and `PUT` have to return the entry as it was saved. Filtering, ordering and working
+selected. After a change it shows the boat or entry from the answer rather than asking again —
+which is why `POST` and `PUT` have to return what was saved. Filtering, ordering and working
 out which inspections are overdue all happen in the browser.
 
 ## Data
@@ -49,6 +51,20 @@ out which inspections are overdue all happen in the browser.
 
 Only `id` is required. `details` is shown as given, in order. `inspection` holds the boat's
 [inspection settings](#inspection-settings).
+
+### Boat draft
+
+The body of `POST boats` and `PUT boats/{boatId}`: a boat without `id` and `inspection`.
+
+- `POST` creates the boat; the backend chooses its `id` and answers with the whole boat. A new
+  boat has no inspection settings and an empty log.
+- `PUT` replaces the name, type, description, picture and details as a whole — whatever is
+  missing from the draft has been cleared by the user. The boat's `id` and its inspection
+  settings stay as they are, and come back in the answer.
+- `DELETE boats/{boatId}` deletes the boat together with its log entries. The page asks the
+  user to confirm first.
+- A `picture` the user just chose arrives as a `data:` URL, like the [pictures](#pictures) of
+  an entry; one that was already there comes back with the `src` the backend gave it.
 
 ### Log entry
 
@@ -82,7 +98,7 @@ Only `id` is required. `details` is shown as given, in order. `inspection` holds
 
 ### Draft
 
-The body of `POST` and `PUT`: an entry without `id` and `boatId`. `engineHours` and `location`
+The body of `POST` and `PUT` for entries: an entry without `id` and `boatId`. `engineHours` and `location`
 are absent when the user left them empty; `notes` may be an empty string, and the tag and
 picture lists may be empty. `PUT` replaces the entry as a whole — whatever is missing from the
 draft has been cleared by the user.

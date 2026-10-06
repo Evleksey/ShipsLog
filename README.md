@@ -21,6 +21,8 @@ Disclamer: This project is in part made with AI. Author advocates for responsibl
 
 - **One log per boat.** A selector at the top switches boats. Below it are the boat's picture,
   description and general information such as home port and length.
+- **Managing boats.** The **+** next to the selector adds a boat. *Edit boat* changes its name,
+  type, description, picture and general information, and deletes the boat with its log.
 - **Inspection reminders.** A part is flagged when nothing has been logged for it within its
   interval. Any entry for the part counts: a service, replacement or repair as much as an
   inspection. The interval is 14 days unless you set another one for that part under

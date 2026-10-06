@@ -2,13 +2,13 @@
  * The module for static hosting (the GitHub Pages demo): the log is imported from a JSON file
  * that sits next to the site, and no server is involved.
  *
- * Changes made on the page — new entries, reminder settings, an imported file — turn the data
+ * Changes made on the page — new boats and entries, reminder settings, an imported file — turn the data
  * into a private copy kept in this browser's localStorage. "Reset" throws that copy away and
  * goes back to the hosted file.
  */
 
 import { dayNumberOfDate, shiftDays, todayDayNumber } from '../lib/time.js';
-import { normalizeData, normalizeEntry, normalizeInspection } from './schema.js';
+import { normalizeBoat, normalizeData, normalizeEntry, normalizeInspection } from './schema.js';
 
 const STORAGE_KEY = 'shipslog.data';
 const FORMAT_VERSION = 1;
@@ -46,11 +46,38 @@ export class StaticDataSource {
     return clone(this.data.boats);
   }
 
+  async createBoat(draft) {
+    const boat = normalizeBoat({ ...draft, id: newBoatId(draft.name, this.data.boats), inspection: {} });
+    this.commit({ ...this.data, boats: [...this.data.boats, boat] });
+    return clone(boat);
+  }
+
+  /** The id and the reminder settings stay; everything else is replaced by the draft. */
+  async updateBoat(boatId, draft) {
+    const { inspection } = this.requireBoat(boatId);
+    const boat = normalizeBoat({ ...draft, id: boatId, inspection });
+    this.commit({
+      ...this.data,
+      boats: this.data.boats.map((existing) => (existing.id === boatId ? boat : existing)),
+    });
+    return clone(boat);
+  }
+
+  /** Takes the boat's log with it. */
+  async deleteBoat(boatId) {
+    this.requireBoat(boatId);
+    this.commit({
+      boats: this.data.boats.filter((boat) => boat.id !== boatId),
+      entries: this.data.entries.filter((entry) => entry.boatId !== boatId),
+    });
+  }
+
   async listEntries(boatId) {
     return clone(this.data.entries.filter((entry) => entry.boatId === boatId));
   }
 
   async createEntry(boatId, draft) {
+    this.requireBoat(boatId);
     const entry = normalizeEntry({ ...draft, id: newId(), boatId });
     this.commit({ ...this.data, entries: [...this.data.entries, entry] });
     return clone(entry);
@@ -72,6 +99,7 @@ export class StaticDataSource {
   }
 
   async saveInspectionSettings(boatId, settings) {
+    this.requireBoat(boatId);
     const inspection = normalizeInspection(settings);
     this.commit({
       ...this.data,
@@ -118,6 +146,12 @@ export class StaticDataSource {
       throw new Error(`The data file ${this.fileUrl.pathname} isn't valid JSON.`);
     });
     return prepare(raw);
+  }
+
+  requireBoat(boatId) {
+    const boat = this.data.boats.find((candidate) => candidate.id === boatId);
+    if (!boat) throw new Error('This boat is no longer in the log.');
+    return boat;
   }
 
   requireEntry(boatId, entryId) {
@@ -177,6 +211,20 @@ function readSaved(storage) {
   } catch {
     return null; // unreadable copy: fall back to the hosted file
   }
+}
+
+/** A readable id from the boat's name — "Sea Otter" → "sea-otter" — numbered when it is taken. */
+function newBoatId(name, boats) {
+  const slug = String(name ?? '')
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '') // accents: "Björn" → "bjorn"
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'boat';
+  const taken = new Set(boats.map((boat) => boat.id));
+  let id = slug;
+  for (let count = 2; taken.has(id); count += 1) id = `${slug}-${count}`;
+  return id;
 }
 
 function newId() {

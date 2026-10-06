@@ -24,6 +24,18 @@ export class ApiDataSource {
     return this.request('GET', 'boats', { expect: (boats) => list(boats).map(normalizeBoat) });
   }
 
+  createBoat(draft) {
+    return this.request('POST', 'boats', { body: draft, expect: normalizeBoat });
+  }
+
+  updateBoat(boatId, draft) {
+    return this.request('PUT', `boats/${id(boatId)}`, { body: draft, expect: normalizeBoat });
+  }
+
+  async deleteBoat(boatId) {
+    await this.request('DELETE', `boats/${id(boatId)}`);
+  }
+
   listEntries(boatId) {
     return this.request('GET', `boats/${id(boatId)}/entries`, {
       expect: (entries) => list(entries).map(savedEntry),
