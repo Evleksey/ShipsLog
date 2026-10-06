@@ -7,7 +7,7 @@ log reminds you when a part has gone too long without attention.
 Ship's Log is a static web page written in plain HTML, CSS and JavaScript modules. It has no
 build step and no dependencies.
 
-Disclamer: This project is in part made with AI. Author advocates for responsible use of LLM and AI and human-centric approach.
+Disclaimer: This project is in part made with AI. Author advocates for responsible use of LLM and AI and human-centric approach.
 
 ## Contents
 
