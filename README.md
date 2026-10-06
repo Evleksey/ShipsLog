@@ -13,6 +13,7 @@ Disclaimer: This project is in part made with AI. Author advocates for responsib
 
 - [Features](#features)
 - [Quick start](#quick-start)
+- [Demo](#demo)
 - [The data file](#the-data-file)
 - [Running offline](#running-on-offline-hardware)
 - [Map data](#map-data)
@@ -60,7 +61,10 @@ python3 -m http.server 8000
 
 Then open <http://localhost:8000/>.
 
-Or go to <http://github.>
+## Demo
+
+Or go to <https://evleksey.github.io/ShipsLog/>
+
 You can modify any data as it is stored only on local browser. You can export it and store it yourself.
 Import your data to work on it. It will not be collected or used in any way.
 
